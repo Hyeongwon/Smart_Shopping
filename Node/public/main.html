@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<h1>Hello IoT Project</h1>
+
+<form method="post" action="/process/add_product_name">
+    <table>
+        <tr>
+            <td><label>prouct_name</label></td>
+            <td><input type="text" name="pName" ></td>
+        </tr>
+    </table>
+    <input type="submit" value="전송" >
+</form>
+
+<form method="post" action = "/process/get_product_name">
+    <table>
+        <tr>
+            <td><label>get_prouct_name</label></td>
+            <td><input type="text" name="pName" ></td>
+        </tr>
+    </table>
+    <input type="submit" value="전송" >
+</form>
+
+<form method="post" action = "/process/get_product_name_json">
+    <table>
+        <tr>
+            <td><label>get_product_name_json</label></td>
+            <td><input type="text" name="pName" ></td>
+        </tr>
+    </table>
+    <input type="submit" value="전송" >
+</form>
+</body>
+</html>
