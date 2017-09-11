@@ -95,7 +95,7 @@ var getJson = function(req, res) {
     var pool = database.db;
     if (database.db) {
 
-        getjson(pool, function(err, rows) {
+        getjson(param_pName, pool, function(err, rows) {
 
             if(err) {
                 console.error('Search Error' + err.stack);
@@ -211,7 +211,7 @@ var getdata = function(product_name, pool, callback) {
 
 };
 
-var getjson = function(pool, callback) {
+var getjson = function(product_name, pool, callback) {
 
     console.log("getJson Call...!!!");
 
@@ -232,7 +232,7 @@ var getjson = function(pool, callback) {
 
         //START SQL
 
-        var exec = conn.query("select * from Product", function(err, rows) {
+        var exec = conn.query("select * from Product where product_name = ?",[product_name], function(err, rows) {
 
             conn.release();
             console.log('exec target SQL : ' + exec.sql);
