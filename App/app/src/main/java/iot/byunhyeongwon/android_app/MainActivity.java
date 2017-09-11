@@ -1,7 +1,9 @@
 package iot.byunhyeongwon.android_app;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -13,6 +15,12 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 
+import org.json.JSONArray;
+import org.json.JSONObject;
+
+import java.io.UnsupportedEncodingException;
+import java.net.Inet4Address;
+import java.net.URLEncoder;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -20,6 +28,9 @@ public class MainActivity extends Activity {
 
     EditText editText;
     TextView textView;
+
+    double longitude;
+    double latitude;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,6 +45,18 @@ public class MainActivity extends Activity {
 
         String url = editText.getText().toString();
 
+        String query = null;
+
+        try {
+
+            query = URLEncoder.encode("빵", "utf-8");
+
+        } catch (UnsupportedEncodingException e) {
+
+            e.printStackTrace();
+        }
+        url = url + query;
+
         StringRequest request = new StringRequest(Request.Method.POST, url,
                 new Response.Listener<String>() {
 
@@ -44,6 +67,27 @@ public class MainActivity extends Activity {
 
                             println("OnResponse() call...!!! : " + response);
 
+                            JSONArray jarray = new JSONArray(response);
+
+                            for(int i=0; i < jarray.length(); i++){
+
+                                JSONObject jObject = jarray.getJSONObject(i);  // JSONObject 추출
+                                String name = jObject.getString("product_name");
+                                longitude = jObject.getDouble("longitude");
+                                latitude = jObject.getDouble("latitude");
+
+                                Log.e("name = ", name);
+                                Log.e("longitude = ", Double.toString(longitude));
+                                Log.e("latitude = ", Double.toString(latitude));
+                                //latitude = jObject.getDouble("latitude");
+                            }
+
+                            Intent i = new Intent();
+                            i.putExtra("longitude", longitude);
+                            i.putExtra("latitude", latitude);
+
+                            i.setClass(MainActivity.this, MapsActivity.class);
+                            startActivity(i);
                         }catch (Exception e) {
 
                             e.printStackTrace();

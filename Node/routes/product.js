@@ -207,8 +207,6 @@ var getdata = function(product_name, pool, callback) {
             }
         })
     });
-
-
 };
 
 var getjson = function(product_name, pool, callback) {
