@@ -111,7 +111,9 @@ var getJson = function(req, res) {
 
                 console.dir(rows);
 
-                //var product_name = rows[0].product_name;
+                var product_id = rows[0].id;
+                console.log(product_id);
+
 
                 res.writeHead('200', {'Content-Type' : 'application/json;charset=utf8'});
                 res.write(JSON.stringify(rows));
@@ -188,8 +190,9 @@ var getdata = function(product_name, pool, callback) {
         var table = 'Product';
 
         //START SQL
-
-        var exec = conn.query("select * from Product where product_name = ?", [product_name], function(err, rows) {
+        //select * from Product INNER JOIN product_store on Product.id = product_store.product_id and Product.product_name = "빵";
+        var exec = conn.query("select * from Product INNER JOIN product_store" +
+            "on Product.id = product_store.product_id where product_name = ?", [product_name], function(err, rows) {
 
             conn.release();
             console.log('exec target SQL : ' + exec.sql);
@@ -230,7 +233,10 @@ var getjson = function(product_name, pool, callback) {
 
         //START SQL
 
-        var exec = conn.query("select * from Product where product_name = ?",[product_name], function(err, rows) {
+        var exec = conn.query("select * from Product INNER JOIN product_store " +
+            "on Product.id = product_store.product_id " +
+            "INNER JOIN store on product_store.store_id " +
+            "= store.id where product_name = ?",[product_name], function(err, rows) {
 
             conn.release();
             console.log('exec target SQL : ' + exec.sql);

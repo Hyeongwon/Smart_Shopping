@@ -29,8 +29,9 @@ public class MainActivity extends Activity {
     EditText editText;
     TextView textView;
 
-    double longitude;
-    double latitude;
+    int product_id;
+    String product_name;
+    int price;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -72,22 +73,22 @@ public class MainActivity extends Activity {
                             for(int i=0; i < jarray.length(); i++){
 
                                 JSONObject jObject = jarray.getJSONObject(i);  // JSONObject 추출
-                                String name = jObject.getString("product_name");
-                                longitude = jObject.getDouble("longitude");
-                                latitude = jObject.getDouble("latitude");
+                                product_id = jObject.getInt("id");
+                                product_name = jObject.getString("product_name");
+                                price = jObject.getInt("price");
 
-                                Log.e("name = ", name);
-                                Log.e("longitude = ", Double.toString(longitude));
-                                Log.e("latitude = ", Double.toString(latitude));
+                                Log.e("product_id = ", Integer.toString(product_id));
+                                Log.e("product_name = ", product_name);
+                                Log.e("price = ", Integer.toString(price));
                                 //latitude = jObject.getDouble("latitude");
                             }
 
-                            Intent i = new Intent();
-                            i.putExtra("longitude", longitude);
-                            i.putExtra("latitude", latitude);
-
-                            i.setClass(MainActivity.this, MapsActivity.class);
-                            startActivity(i);
+//                            Intent i = new Intent();
+//                            i.putExtra("longitude", longitude);
+//                            i.putExtra("latitude", latitude);
+//
+//                            i.setClass(MainActivity.this, MapsActivity.class);
+//                            startActivity(i);
                         }catch (Exception e) {
 
                             e.printStackTrace();
