@@ -13,6 +13,7 @@ import android.support.v4.app.ActivityCompat;
 import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -22,6 +23,8 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.request.target.GlideDrawableImageViewTarget;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -59,7 +62,12 @@ public class MainActivity extends Activity {
         setContentView(R.layout.activity_main);
 
         editText = (EditText) findViewById(R.id.editText);
-        textView = (TextView) findViewById(R.id.textView);
+        //textView = (TextView) findViewById(R.id.textView);
+
+        ImageView imageView = (ImageView) findViewById(R.id.nfcImg);
+        GlideDrawableImageViewTarget glideDrawableImageViewTarget =
+                new GlideDrawableImageViewTarget(imageView);
+        Glide.with(this).load(R.raw.nfc).into(glideDrawableImageViewTarget);
 
         settingGPS();
 
@@ -107,6 +115,8 @@ public class MainActivity extends Activity {
                             println("OnResponse() call...!!! : " + response);
 
                             JSONArray jarray = new JSONArray(response);
+                            psList.clear();
+                            sList.clear();
 
                             for (int i = 0; i < jarray.length(); i++) {
 
@@ -184,7 +194,7 @@ public class MainActivity extends Activity {
 
     public void println(final String data) {
 
-        textView.append(data + '\n');
+        //textView.append(data + '\n');
     }
 
     private Location getMyLocation() {

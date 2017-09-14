@@ -50,6 +50,7 @@ public class mapFragment extends Fragment implements OnMapReadyCallback {
         mMap = googleMap;
         LatLng latLngs[] = new LatLng[pList.size()];
         MarkerOptions marker[] = new MarkerOptions[pList.size()];
+        float color[] = {0.0f, 30.0f, 60.0f, 120.0f, 240.0f, 210.0f, 270.0f};
 
         for(int i = 0; i < pList.size(); i++) {
 
@@ -58,14 +59,8 @@ public class mapFragment extends Fragment implements OnMapReadyCallback {
 
         for(int i = 0; i < pList.size(); i++) {
 
-            if(i % 2 == 0) {
+            marker[i] = new MarkerOptions().position(latLngs[i]).icon(BitmapDescriptorFactory.defaultMarker(color[i]));
 
-                marker[i] = new MarkerOptions().position(latLngs[i]).icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_AZURE));
-
-            } else {
-
-                marker[i] = new MarkerOptions().position(latLngs[i]).icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_ROSE));
-            }
             mMap.addMarker(marker[i]);
         }
 

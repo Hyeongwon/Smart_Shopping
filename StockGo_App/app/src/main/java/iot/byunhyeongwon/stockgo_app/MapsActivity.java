@@ -77,7 +77,7 @@ public class MapsActivity extends FragmentActivity {
             TextView textView = (TextView)v.findViewById(R.id.map_detail_tv);
             textView.setText(items.get(position).getName() + "\t");
             textView.append(" " + psList.get(position).getStock() + "items Left\n");
-            textView.append(" " + items.get(position).getAddr() + "\n");
+            textView.append("주소 : " + items.get(position).getAddr() + "\n");
 
             //final String text = items.get(position);
             Button saveBtn = (Button)v.findViewById(R.id.map_detail_saveBtn);

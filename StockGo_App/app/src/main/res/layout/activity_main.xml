@@ -5,6 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:background="#242424"
     tools:context="iot.byunhyeongwon.stockgo_app.MainActivity">
 
     <LinearLayout
@@ -30,17 +31,65 @@
 
     </LinearLayout>
 
-    <ScrollView
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="#FFDEEAFC">
+        android:layout_weight="1">
 
-        <TextView
+        <ImageView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:text=" "
-            android:id="@+id/textView"/>
+            android:id="@+id/nfcImg"/>
 
-    </ScrollView>
+    </LinearLayout>
+
+
+    <!--<ScrollView-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:background="#FFDEEAFC">-->
+
+        <!--<TextView-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="match_parent"-->
+            <!--android:text=" "-->
+            <!--android:id="@+id/textView"/>-->
+
+    <!--</ScrollView>-->
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <Button
+            android:textColor="#ffffff"
+            android:textSize="36px"
+            android:paddingLeft="18dip"
+            android:drawableLeft="@drawable/ic_search_black_24dp"
+            android:drawablePadding="18dip"
+            android:gravity="left|center_vertical"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/SearchBtn"
+            android:text="Search"
+            android:layout_toStartOf="@+id/HistoryBtn" />
+
+
+        <Button
+            android:textColor="#ffffff"
+            android:textSize="36px"
+            android:paddingLeft="18dip"
+            android:drawableLeft="@drawable/ic_list_black_24dp"
+            android:drawablePadding="18dip"
+            android:gravity="left|center_vertical"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/HistoryBtn"
+            android:text="History"
+            android:layout_alignParentEnd="true" />
+
+    </RelativeLayout>
 
 </LinearLayout>
