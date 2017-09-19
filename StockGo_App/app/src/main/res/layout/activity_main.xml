@@ -74,6 +74,7 @@
             android:layout_height="wrap_content"
             android:id="@+id/SearchBtn"
             android:text="Search"
+            android:onClick="search"
             android:layout_toStartOf="@+id/HistoryBtn" />
 
 
@@ -88,6 +89,7 @@
             android:layout_height="wrap_content"
             android:id="@+id/HistoryBtn"
             android:text="History"
+            android:onClick="history"
             android:layout_alignParentEnd="true" />
 
     </RelativeLayout>

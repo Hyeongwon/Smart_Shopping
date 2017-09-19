@@ -12,6 +12,7 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
+import android.widget.ViewFlipper;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.target.GlideDrawableImageViewTarget;
@@ -27,6 +28,7 @@ public class ProductDetailActivity extends FragmentActivity {
     TextView tv;
     Product p;
     Button findBt;
+    ViewFlipper viewFlipper;
 
     ArrayList<Store> sList;
     ArrayList<Product_Store> psList;
@@ -42,6 +44,7 @@ public class ProductDetailActivity extends FragmentActivity {
         setContentView(R.layout.activity_product_detail);
 
         tv = (TextView) findViewById(R.id.tv_product_detail);
+        viewFlipper = (ViewFlipper) findViewById(R.id.view_flipper);
         //findBt = (Button) findViewById(R.id.findStore);
 
         Store_alarmFragment store_alarmFragment;
@@ -55,6 +58,9 @@ public class ProductDetailActivity extends FragmentActivity {
 
         Intent intent = getIntent();
         p = (Product) intent.getSerializableExtra("product");
+
+        viewFlipper.startFlipping();
+        viewFlipper.setFlipInterval(2000);
 
         tv.setText("아이템 명 = " + p.getProduct_name() + "\n");
         //tv.append(Integer.toString(p.getId()) + "\n");

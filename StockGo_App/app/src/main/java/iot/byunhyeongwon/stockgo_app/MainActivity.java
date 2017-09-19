@@ -2,7 +2,9 @@ package iot.byunhyeongwon.stockgo_app;
 
 import android.Manifest;
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.location.Location;
@@ -243,4 +245,41 @@ public class MainActivity extends Activity {
         };
     }
 
+    public void search(final View view) {
+
+        AlertDialog.Builder alertdialog = new AlertDialog.Builder(MainActivity.this);
+        EditText et = new EditText(MainActivity.this);
+        //다이얼로그의 내용을 설정합니다.
+        alertdialog.setTitle("아이템 검색");
+        alertdialog.setMessage("직접 입력하세요.");
+
+        alertdialog.setView(et);
+
+        //확인 버튼
+        alertdialog.setPositiveButton("확인", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                //확인 버튼이 눌렸을 때 토스트를 띄워줍니다.
+                reqBtn(view);
+            }
+        });
+
+        //취소 버튼
+        alertdialog.setNegativeButton("취소", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                //취소 버튼이 눌렸을 때 토스트를 띄워줍니다.
+                Toast.makeText(MainActivity.this, "취소", Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        AlertDialog alert = alertdialog.create();
+        alert.show();
+
+        //reqBtn(view);
+    }
+
+    public void history(View view) {
+
+    }
 }
