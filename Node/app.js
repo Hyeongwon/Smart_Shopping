@@ -1,6 +1,8 @@
 /**
  * Created by byunhyeongwon on 2017. 9. 8..
  */
+// fs Module
+var fs = require('fs');
 
 // Express Module
 var express = require('express')
@@ -11,6 +13,8 @@ var bodyPaser = require('body-parser')
     , static = require('serve-static');
 
 var expressErrorHandler = require('express-error-handler');
+
+var expressSession = require('express-session');
 
 // 모듈로 분리한 설정 파일 불러오기
 var config = require('./config/config');
@@ -28,6 +32,12 @@ app.set('port', process.env.PORT || 3000);
 app.use(bodyPaser.urlencoded({ extended : false}));
 app.use(bodyPaser.json());
 app.use('/public', static(path.join(__dirname, 'public')));
+
+app.use(expressSession({
+    secret:'my key',
+    resave:true,
+    saveUninitialized:true
+}));
 
 // Router
 var router = express.Router();

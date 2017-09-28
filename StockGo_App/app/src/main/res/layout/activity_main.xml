@@ -1,97 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.v4.widget.DrawerLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/drawer_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:background="#242424"
-    tools:context="iot.byunhyeongwon.stockgo_app.MainActivity">
+    android:fitsSystemWindows="true"
+    tools:openDrawer="start">
 
-    <LinearLayout
+    <include
+        layout="@layout/app_bar_main"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
+        android:layout_height="match_parent" />
 
-        <EditText
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="3"
-            android:textSize="15dp"
-            android:text="http://13.124.219.166:3000/process/get_product_name_json?pName="
-            android:id="@+id/editText"/>
-
-        <Button
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="Request"
-            android:id="@+id/reqBtn"
-            android:onClick="reqBtn"/>
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
+    <android.support.design.widget.NavigationView
+        android:id="@+id/nav_view"
+        android:layout_width="wrap_content"
         android:layout_height="match_parent"
-        android:layout_weight="1">
+        android:layout_gravity="start"
+        android:fitsSystemWindows="true"
+        app:headerLayout="@layout/nav_header_main"
+        app:menu="@menu/activity_main_drawer" />
 
-        <ImageView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:id="@+id/nfcImg"/>
-
-    </LinearLayout>
-
-
-    <!--<ScrollView-->
-        <!--android:layout_width="match_parent"-->
-        <!--android:layout_height="wrap_content"-->
-        <!--android:background="#FFDEEAFC">-->
-
-        <!--<TextView-->
-            <!--android:layout_width="match_parent"-->
-            <!--android:layout_height="match_parent"-->
-            <!--android:text=" "-->
-            <!--android:id="@+id/textView"/>-->
-
-    <!--</ScrollView>-->
-
-
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
-
-        <Button
-            android:textColor="#ffffff"
-            android:textSize="36px"
-            android:paddingLeft="18dip"
-            android:drawableLeft="@drawable/ic_search_black_24dp"
-            android:drawablePadding="18dip"
-            android:gravity="left|center_vertical"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/SearchBtn"
-            android:text="Search"
-            android:onClick="search"
-            android:layout_toStartOf="@+id/HistoryBtn" />
-
-
-        <Button
-            android:textColor="#ffffff"
-            android:textSize="36px"
-            android:paddingLeft="18dip"
-            android:drawableLeft="@drawable/ic_list_black_24dp"
-            android:drawablePadding="18dip"
-            android:gravity="left|center_vertical"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/HistoryBtn"
-            android:text="History"
-            android:onClick="history"
-            android:layout_alignParentEnd="true" />
-
-    </RelativeLayout>
-
-</LinearLayout>
+</android.support.v4.widget.DrawerLayout>

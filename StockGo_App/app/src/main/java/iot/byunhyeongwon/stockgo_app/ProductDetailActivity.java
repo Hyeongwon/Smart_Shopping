@@ -3,7 +3,10 @@ package iot.byunhyeongwon.stockgo_app;
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.AsyncTask;
+import android.os.Handler;
 import android.support.v4.app.FragmentActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -16,7 +19,12 @@ import android.widget.ViewFlipper;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.target.GlideDrawableImageViewTarget;
+import com.google.android.gms.common.data.DataHolder;
 
+import java.io.IOException;
+import java.io.InputStream;
+import java.net.HttpURLConnection;
+import java.net.URL;
 import java.util.ArrayList;
 
 import vo.Product;
@@ -38,6 +46,8 @@ public class ProductDetailActivity extends FragmentActivity {
     int cur_store_id;
     int cur_product_id;
 
+    Handler handler = new Handler();
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -45,9 +55,11 @@ public class ProductDetailActivity extends FragmentActivity {
 
         tv = (TextView) findViewById(R.id.tv_product_detail);
         viewFlipper = (ViewFlipper) findViewById(R.id.view_flipper);
+
         //findBt = (Button) findViewById(R.id.findStore);
 
         Store_alarmFragment store_alarmFragment;
+
         FragmentManager fm;
 
         fm = getFragmentManager();
@@ -59,11 +71,42 @@ public class ProductDetailActivity extends FragmentActivity {
         Intent intent = getIntent();
         p = (Product) intent.getSerializableExtra("product");
 
+        Thread t = new Thread(new Runnable() {
+            @Override
+            public void run() {
+                // TODO Auto-generated method stub
+                try{
+
+                    final ImageView iv = (ImageView)findViewById(R.id.imageView1);
+                    URL url = new URL("http://13.124.219.166:3000/images?pId=1");
+                    InputStream is = url.openStream();
+                    final Bitmap bm = BitmapFactory.decodeStream(is);
+                    handler.post(new Runnable() {
+
+                        @Override
+                        public void run() {  // 화면에 그려줄 작업
+                            Log.e("!!!!!!!!", "!!!!!!!!!!!!");
+                            iv.setImageBitmap(bm);
+
+                        }
+                    });
+                    iv.setImageBitmap(bm); //비트맵 객체로 보여주기
+                } catch(Exception e){
+
+                }
+
+            }
+        });
+
+        t.start();
+
+        //getBitmapFromURL("http://13.124.219.166:3000/images?pId=1");
+
         viewFlipper.startFlipping();
         viewFlipper.setFlipInterval(2000);
 
         tv.setText("아이템 명 = " + p.getProduct_name() + "\n");
-        //tv.append(Integer.toString(p.getId()) + "\n");
+        tv.append(Integer.toString(p.getId()) + "\n");
         cur_product_id = p.getId();
         tv.append("가격 = " + Integer.toString(p.getPrice()) + "\n");
 
@@ -109,6 +152,23 @@ public class ProductDetailActivity extends FragmentActivity {
 
 //        Toast.makeText(this, "latitude = " + cur_latitude + "\nlongitude = " + cur_longitude, Toast.LENGTH_LONG).show();
     }
+
+//    public Bitmap getBitmapFromURL(String src) {
+//        try {
+//            java.net.URL url = new java.net.URL(src);
+//            HttpURLConnection connection = (HttpURLConnection) url
+//                    .openConnection();
+//            connection.setDoInput(true);
+//            connection.connect();
+//            InputStream input = connection.getInputStream();
+//            Bitmap myBitmap = BitmapFactory.decodeStream(input);
+//            Log.e("????????", "???????????/");
+//            return myBitmap;
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//            return null;
+//        }
+//    }
 
     private static double distance(double lat1, double lon1, double lat2, double lon2, String unit) {
 
@@ -187,4 +247,23 @@ public class ProductDetailActivity extends FragmentActivity {
         super.onStop();
     }
 
+    public void deliverySetBtn(View view) {
+
+        Toast.makeText(this, "딜리버리세팅", Toast.LENGTH_SHORT).show();
+
+        Intent intent = new Intent();
+
+        intent.setClass(this, DeliveryActivity.class);
+        String store_addr = null;
+        for(int i = 0; i < sList.size(); i++) {
+
+            if(sList.get(i).getId() == cur_store_id) {
+
+                store_addr = sList.get(i).getAddr();
+            }
+        }
+
+        intent.putExtra("store_addr", store_addr);
+        startActivity(intent);
+    }
 }

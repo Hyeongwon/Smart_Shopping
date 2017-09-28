@@ -67,7 +67,7 @@ public class MapsActivity extends FragmentActivity {
             this.items = objects;
         }
 
-        public View getView(int position, View convertView, ViewGroup parent) {
+        public View getView(final int position, View convertView, ViewGroup parent) {
             View v = convertView;
             if (v == null) {
                 LayoutInflater vi = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
@@ -84,7 +84,7 @@ public class MapsActivity extends FragmentActivity {
             saveBtn.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Toast.makeText(MapsActivity.this, "!!!!", Toast.LENGTH_SHORT).show();
+
                 }
             });
 
@@ -92,7 +92,12 @@ public class MapsActivity extends FragmentActivity {
             DeliveryBtn.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Toast.makeText(MapsActivity.this, "!!!!", Toast.LENGTH_SHORT).show();
+
+                    Intent intent = new Intent();
+                    intent.putExtra("store_addr", items.get(position).getAddr());
+                    intent.setClass(MapsActivity.this, DeliveryActivity.class);
+                    startActivity(intent);
+
                 }
             });
 

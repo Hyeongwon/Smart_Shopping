@@ -2,7 +2,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#CCCFFF"
     tools:context="iot.byunhyeongwon.stockgo_app.Store_infoFragment">
 
     <LinearLayout
@@ -12,13 +11,17 @@
 
         <Button
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:onClick="findStore"
-            android:text="가까운 매장 찾기"/>
+            android:text="가까운 매장 찾기"
+            android:layout_weight="1"
+            android:background="@drawable/location_button"/>
 
         <Button
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:onClick="deliverySetBtn"
+            android:layout_weight="1"
             android:text="주소지로 배송"/>
 
     </LinearLayout>

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="WebServers">
+    <option name="servers">
+      <webServer id="cf3db676-cd02-465f-98af-bd6f75101d1a" name="aws" url="http://13.124.219.166">
+        <fileTransfer host="13.124.219.166" port="22" privateKey="$USER_HOME$/dev/key/aws_pwd.pem" accessType="SFTP" keyPair="true">
+          <advancedOptions>
+            <advancedOptions dataProtectionLevel="Private" />
+          </advancedOptions>
+          <option name="port" value="22" />
+        </fileTransfer>
+      </webServer>
+    </option>
+  </component>
+</project>

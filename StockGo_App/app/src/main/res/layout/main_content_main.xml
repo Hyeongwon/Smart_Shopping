@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:background="#242424"
+        tools:context="iot.byunhyeongwon.stockgo_app.MainActivity">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <EditText
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="3"
+                android:textSize="15dp"
+                android:text="http://13.124.219.166:3000/process/get_product_name_json?pName="
+                android:id="@+id/editText"/>
+
+            <Button
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Request"
+                android:id="@+id/reqBtn"
+                android:onClick="reqBtn"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1">
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:id="@+id/nfcImg"/>
+
+        </LinearLayout>
+
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <Button
+                android:textColor="#ffffff"
+                android:textSize="36px"
+                android:paddingLeft="18dip"
+                android:drawableLeft="@drawable/ic_search_black_24dp"
+                android:drawablePadding="18dip"
+                android:gravity="left|center_vertical"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/SearchBtn"
+                android:text="Search"
+                android:onClick="search"
+                android:layout_toStartOf="@+id/HistoryBtn" />
+
+
+            <Button
+                android:textColor="#ffffff"
+                android:textSize="36px"
+                android:paddingLeft="18dip"
+                android:drawableLeft="@drawable/ic_list_black_24dp"
+                android:drawablePadding="18dip"
+                android:gravity="left|center_vertical"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/HistoryBtn"
+                android:text="History"
+                android:onClick="history"
+                android:layout_alignParentEnd="true" />
+
+        </RelativeLayout>
+
+    </LinearLayout>
+
+</android.support.constraint.ConstraintLayout>
