@@ -21,6 +21,8 @@ import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.target.GlideDrawableImageViewTarget;
 import com.google.android.gms.common.data.DataHolder;
 
+import org.w3c.dom.Text;
+
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.HttpURLConnection;
@@ -33,7 +35,9 @@ import vo.Store;
 
 public class ProductDetailActivity extends FragmentActivity {
 
-    TextView tv;
+    TextView tv_product_name;
+    TextView tv_product_price;
+    TextView tv_product_stock;
     Product p;
     Button findBt;
     ViewFlipper viewFlipper;
@@ -53,7 +57,9 @@ public class ProductDetailActivity extends FragmentActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_product_detail);
 
-        tv = (TextView) findViewById(R.id.tv_product_detail);
+        tv_product_name = (TextView) findViewById(R.id.tv_product_name);
+        tv_product_price = (TextView) findViewById(R.id.tv_product_price);
+        tv_product_stock = (TextView) findViewById(R.id.tv_product_stock);
         viewFlipper = (ViewFlipper) findViewById(R.id.view_flipper);
 
         //findBt = (Button) findViewById(R.id.findStore);
@@ -105,10 +111,9 @@ public class ProductDetailActivity extends FragmentActivity {
         viewFlipper.startFlipping();
         viewFlipper.setFlipInterval(2000);
 
-        tv.setText("아이템 명 = " + p.getProduct_name() + "\n");
-        tv.append(Integer.toString(p.getId()) + "\n");
+        tv_product_name.setText(p.getProduct_name());
         cur_product_id = p.getId();
-        tv.append("가격 = " + Integer.toString(p.getPrice()) + "\n");
+        tv_product_price.setText(Integer.toString(p.getPrice()));
 
         psList = (ArrayList<Product_Store>) intent.getSerializableExtra("psList");
         sList = (ArrayList<Store>) intent.getSerializableExtra("sList");
@@ -129,20 +134,18 @@ public class ProductDetailActivity extends FragmentActivity {
 
         cur_store_name = get_store_name();
 
-        tv.append("store_name = " + cur_store_name + "\n");
-
         for(int i = 0; i < psList.size(); i++) {
 
             if(psList.get(i).getStore_id() == cur_store_id) {
 
                 if(psList.get(i).getStock() == 0) {
 
-                    tv.append("Out of Stock" + "\n");
+                    tv_product_stock.setText("0");
 
                 } else {
 
                     if(store_alarmFragment != null) fragmentTransaction.detach(store_alarmFragment);
-                    tv.append("InStock" + "\n");
+                    tv_product_stock.setText(psList.get(i).getStock());
                 }
             }
         }
