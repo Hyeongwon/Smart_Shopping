@@ -32,6 +32,7 @@ import java.util.ArrayList;
 import vo.Product;
 import vo.Product_Store;
 import vo.Store;
+import vo.User;
 
 public class ProductDetailActivity extends FragmentActivity {
 
@@ -39,6 +40,7 @@ public class ProductDetailActivity extends FragmentActivity {
     TextView tv_product_price;
     TextView tv_product_stock;
     Product p;
+    User u;
     Button findBt;
     ViewFlipper viewFlipper;
 
@@ -76,6 +78,7 @@ public class ProductDetailActivity extends FragmentActivity {
 
         Intent intent = getIntent();
         p = (Product) intent.getSerializableExtra("product");
+        u = (User) intent.getSerializableExtra("user");
 
         Thread t = new Thread(new Runnable() {
             @Override
@@ -111,9 +114,11 @@ public class ProductDetailActivity extends FragmentActivity {
         viewFlipper.startFlipping();
         viewFlipper.setFlipInterval(2000);
 
-        tv_product_name.setText(p.getProduct_name());
+        tv_product_name.setText("\t" + p.getProduct_name());
         cur_product_id = p.getId();
-        tv_product_price.setText(Integer.toString(p.getPrice()));
+
+        String price = String.format("%,d", p.getPrice());
+        tv_product_price.setText("\t" + price + "원");
 
         psList = (ArrayList<Product_Store>) intent.getSerializableExtra("psList");
         sList = (ArrayList<Store>) intent.getSerializableExtra("sList");
@@ -140,12 +145,12 @@ public class ProductDetailActivity extends FragmentActivity {
 
                 if(psList.get(i).getStock() == 0) {
 
-                    tv_product_stock.setText("0");
+                    tv_product_stock.setText("\t0");
 
                 } else {
 
                     if(store_alarmFragment != null) fragmentTransaction.detach(store_alarmFragment);
-                    tv_product_stock.setText(psList.get(i).getStock());
+                    tv_product_stock.setText("\t" + psList.get(i).getStock());
                 }
             }
         }
@@ -240,6 +245,7 @@ public class ProductDetailActivity extends FragmentActivity {
 
         intent.putExtra("sList", temp_sList);
         intent.putExtra("psList", psList);
+        intent.putExtra("user", u);
         startActivity(intent);
 
     }
@@ -267,6 +273,7 @@ public class ProductDetailActivity extends FragmentActivity {
         }
 
         intent.putExtra("store_addr", store_addr);
+        intent.putExtra("user", u);
         startActivity(intent);
     }
 }

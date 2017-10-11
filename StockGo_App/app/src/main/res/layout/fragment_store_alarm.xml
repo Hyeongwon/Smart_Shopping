@@ -8,7 +8,8 @@
     <Button
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="재입고시 알림?"
-        android:background="@drawable/alarm_button"/>
+        android:text="Notify me when back in stock"
+        android:textColor="@color/text_selector"
+        android:background="@drawable/alram_btn"/>
 
 </FrameLayout>

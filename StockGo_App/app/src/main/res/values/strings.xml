@@ -23,4 +23,6 @@
         completions."
     </string>
     <string name="title_activity_signup">Sign in</string>
+    <string name="back">&lt;&lt; Back</string>
+
 </resources>

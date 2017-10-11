@@ -13,16 +13,19 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:onClick="findStore"
-            android:text="가까운 매장 찾기"
+            android:text="Check other stores availability"
+            android:textColor="@color/text_selector"
             android:layout_weight="1"
-            android:background="@drawable/location_button"/>
+            android:background="@drawable/location_btn"/>
 
         <Button
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:onClick="deliverySetBtn"
             android:layout_weight="1"
-            android:text="주소지로 배송"/>
+            android:textColor="@color/text_selector"
+            android:text="Delivery to my address"
+            android:background="@drawable/delivery_btn"/>
 
     </LinearLayout>
 

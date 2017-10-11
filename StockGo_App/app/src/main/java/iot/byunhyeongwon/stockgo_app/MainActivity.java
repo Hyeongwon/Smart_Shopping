@@ -100,7 +100,7 @@ public class MainActivity extends AppCompatActivity
         ImageView imageView = (ImageView) findViewById(R.id.nfcImg);
         GlideDrawableImageViewTarget glideDrawableImageViewTarget =
                 new GlideDrawableImageViewTarget(imageView);
-        Glide.with(this).load(R.raw.nfc).into(glideDrawableImageViewTarget);
+        Glide.with(this).load(R.raw.test).into(glideDrawableImageViewTarget);
 
         //TODO For side navi-bar
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
